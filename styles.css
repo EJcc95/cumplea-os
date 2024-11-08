@@ -280,8 +280,13 @@ body {
 }
 
 /* Estilo del botón de confirmación */
+
+.confirmation {
+  background-color: #09265C;
+}
+
 .confirm-button {
-  background-color: #0c61cf;
+  background-color: #09265C;
   color: white;
   border: none;
   padding: 10px 20px;
