@@ -1,8 +1,11 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
 
 body {
-  font-family: "Noto Serif", serif;
+  font-family: "Crimson Text", serif;
   font-optical-sizing: auto;
   font-style: normal;
 }
@@ -114,6 +117,21 @@ body {
   animation: fadeIn 2s ease-in-out;
 }
 
+.hero-section h1 {
+  font-family: "Parisienne", cursive;
+  font-size: 4rem;
+}
+
+.hero-section p {
+  font-family: "Great Vibes", cursive;
+  font-size: 2rem;
+}
+
+.hero-section a {
+  font-family: "Great Vibes", cursive;
+  font-size: 1.5rem;
+}
+
 .hero-section::before {
   content: '';
   position: absolute;
@@ -196,6 +214,33 @@ body {
   }
 }
 
+/* Agradecimiento */
+
+.agradecimiento h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: great vibes;
+  color: #134bb3;
+  font-size: 3rem;
+  font-weight: 500;
+
+}
+
+.agradecimiento p {
+  font-family: "Noto Serif", serif;
+  color: #1d1d1d;
+  font-size: 1rem;
+}
+
+.agradecimiento span {
+  font-family: great vibes !important;
+  color: #134bb3 !important;
+  font-size: 2.4rem !important;
+}
+
 /* About */
 .about {
   background: linear-gradient(rgba(0, 0, 0, .1), rgba(0, 0, 0, .1)), url(../image/iglesia.jpg) left center no-repeat;
@@ -203,23 +248,31 @@ body {
   border-radius: 10px;
 }
 
-.about h4 {
+.about h1 {
+
   color: #09265C;
   font-size: 2rem;
 }
 
-.about b {
-  color: #09265C;
-  font-size: 1.5rem;
-}
+
+
 
 /* Event Details Section with Overlay */
+
+.evento h1 {
+  font-family: "Parisienne", cursive;
+  font-size: 4rem;
+  color: #134bb3;
+}
+
+
+
 .event-details {
   position: relative;
   background-size: cover;
   background-position: center;
-
   text-align: center;
+  font-size: 1.2rem;
 }
 
 .event-details .overlay {
@@ -242,6 +295,12 @@ body {
 /* Gallery Section */
 .gallery-section {
   background-color: #f7f7f7;
+}
+
+.gallery-section h1 {
+  font-family: "great vibes";
+  font-size: 4rem;
+  color: #0c61cf;
 }
 
 .card {
@@ -283,7 +342,7 @@ body {
 }
 
 .section-title {
-  font-size: 1.2rem;
+  font-size: 2.2rem;
   font-weight: 500;
   letter-spacing: 2px;
   color: #0c61cf;
@@ -336,18 +395,20 @@ body {
 }
 
 .quote-symbol {
-  font-size: 4rem;
+  font-size: 1.8rem;
   /* Tamaño grande para las comillas */
   vertical-align: middle;
 }
 
 .quote-text {
-  font-size: 1.8rem;
+  font-family: 'great vibes', cursive;
+  font-size: 2.2rem;
   font-weight: 500;
   margin: 20px 0;
 }
 
 .quote-author {
+  color: #1d1d1d;
   margin-top: 20px;
   font-size: 1.4rem;
   font-weight: 400;
@@ -394,8 +455,31 @@ body {
 
 /* Estilo del botón de confirmación */
 
+
+
+
 .confirmation {
   background-color: #09265C;
+}
+
+.confirmation h2 {
+  font-family: "great vibes";
+  font-size: 4rem;
+  color: #0c61cf;
+
+}
+
+.confirmation h5 {
+  font-family: "great vibes";
+  font-size: 3rem;
+  color: #0c61cf;
+
+}
+
+.confirmation strong {
+  font-family: "parisienne"cursive;
+  font-size: 1rem;
+  color: #0c61cf;
 }
 
 .confirm-button {

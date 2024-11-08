@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web con Música de Fondo</title>
+    <style>
+        /* Estilo para ocultar el reproductor de audio */
+        audio {
+            display: none;
+        }
+
+        /* Botón fijo para reproducir/pausar */
+        #playPauseBtn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #playPauseBtn:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Reproductor de audio que inicia automáticamente -->
+    <audio id="backgroundMusic" autoplay loop>
+        <source src="assets/music/My_Way-FrankSinatra.mp3" type="audio/mp3">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <!-- Botón de reproducción/pausa -->
+    <button id="playPauseBtn">❚❚</button>
+
+    <script>
+        // Obtener el elemento de audio y el botón
+        const audio = document.getElementById('backgroundMusic');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+
+        // Función para alternar entre reproducción y pausa
+        function togglePlayPause() {
+            if (audio.paused) {
+                audio.play();
+                playPauseBtn.textContent = '❚❚'; // Icono de pausa
+            } else {
+                audio.pause();
+                playPauseBtn.textContent = '▶'; // Icono de play
+            }
+        }
+
+        // Agregar evento de clic al botón para alternar la música
+        playPauseBtn.addEventListener('click', togglePlayPause);
+    </script>
+
+</body>
+
+</html>
