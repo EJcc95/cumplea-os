@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Page de Cumpleaños</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- Hero Section -->
+  <section class="hero-section text-white text-center">
+    <div class="container d-flex flex-column justify-content-center align-items-center h-100">
+      <h1 class="display-4 fw-bold">🎉 ¡Feliz Cumpleaños! 🎉</h1>
+      <p class="lead">Únete a la celebración de un día especial 🎂</p>
+      <a href="#gallery" class="btn btn-info btn-lg mt-4">Ver la detalles</a>
+    </div>
+    <div class="wave-container">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="wave-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#7ecbff;stop-opacity:1" />
+            <stop offset="50%" style="stop-color:#2d7bf1;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#1435ee;stop-opacity:1" />
+          </linearGradient>
+          <path id="wave" d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+        </defs>
+        <g class="parallax">
+          <use href="#wave" x="48" y="0" fill="url(#wave-gradient)" />
+          <use href="#wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+          <use href="#wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+          <use href="#wave" x="48" y="7" fill="#0072ff" />
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Detalles del Evento Section -->
+  <section class="event-details text-white text-center py-5" style="background-image: url('path/to/event-bg.jpg');">
+    <div class="overlay"></div>
+    <div class="container position-relative">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+          <div class="wedding-card text-center">
+            <div class="rings-icon mb-4">
+              <i class="bi bi-ring"></i>
+            </div>
+
+            <h1 class="wedding-title mb-4">Detalles del Evento</h1>
+
+            <div class="event-image mb-4">
+              <img src="cumpleaños.jpeg" alt="Jardines de la recepción" class="img-fluid rounded">
+            </div>
+
+            <div class="event-details mb-4">
+              <h2 class="section-title">Dia y Hora</h2>
+              <p class="event-date">Sábado, 25 de Noviembre a las 18:00 hrs</p>
+              <button class="btn btn-calendar mb-4">
+                <i class="bi bi-calendar-event me-2"></i>
+                AGENDAR
+              </button>
+            </div>
+
+            <div class="event-location">
+              <h2 class="section-title">LUGAR</h2>
+              <p class="location-text">"Jardines de Sabandia", prolongación Colon 221</p>
+              <button class="btn btn-location">
+                <i class="bi bi-geo-alt me-2"></i>
+                ¿CÓMO LLEGAR?
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="gallery-section py-5">
+    <div class="container">
+      <h1 class="text-center mb-5 ">Galería De Imágenes</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card">
+            <img src="cumpleaños.jpeg" class="card-img-top" alt="Imagen 1">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <img src="cumpleaños.jpeg" class="card-img-top" alt="Imagen 2">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <img src="cumpleaños.jpeg" class="card-img-top" alt="Imagen 3">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Confirmación -->
+  <section class="event-details text-white text-center py-5" style="background-image: url('path/to/event-bg.jpg');">
+    <div class="overlay"></div>
+    <div class="container position-relative">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+          <div class="invitation-card">
+            <!-- Imagen de cumpleaños -->
+            <img src="cumpleaños.jpeg" alt="Rosas" class="img-fluid">
+            
+            <!-- Texto de la invitación -->
+            <div class="invitation-text">
+                <h2>Confirmación</h2>
+                <p>¡Estás invitado a celebrar un cumpleaños muy especial!</p>
+                <p>Por favor, confírmanos tu asistencia antes del <strong>11/5/2024</strong>.</p>
+                <!-- Botón de confirmación -->
+                <button class="confirm-button">Confirmar Asistencia</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    </section>
+  <div class="container quote-container">
+    <p class="quote-text"> <b class="quote-symbol">“</b>
+      Él reserva su ayuda para la gente íntegra y protege a los de conducta intachable.
+      Él cuida el sendero de los justos y protege el camino de sus fieles.<b class="quote-symbol">”</b>
+    </p>
+    <div class="quote-author">Proverbios 2:7-8</div>
+    
+</div>
+
+  <!-- Footer Section -->
+  <footer class="footer-section text-white text-center py-4">
+    <p>&copy; Todos los derechos reservados ❤. Hecho con  por EJ®.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="wave.js"></script>
+  <script>
+    // Efecto de paralaje opcional en movimiento de ondas según la posición del mouse
+    document.addEventListener("mousemove", (e) => {
+      const layers = document.querySelectorAll('.parallax > use');
+      layers.forEach(layer => {
+        const speed = layer.getAttribute('data-speed');
+        const x = (window.innerWidth - e.pageX * speed) / 100;
+        layer.style.transform = `translateX(${x}px)`;
+      });
+    });
+
+  </script>
+</body>
+
+</html>
