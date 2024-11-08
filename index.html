@@ -16,11 +16,10 @@
     <button class="player-button" id="playerButton" title="Reproducir/Pausar música">
       <i class="fas fa-pause" id="playerIcon"></i>
     </button>
-    <audio id="backgroundMusic" autoplay loop>
+    <audio id="backgroundMusic" loop>
       <source src="assets/music/My_Way-FrankSinatra.mp3" type="audio/mp3">
       Tu navegador no soporta el elemento de audio.
     </audio>
-
   </div>
 
   <!-- Hero Section -->
@@ -312,9 +311,9 @@
       const playerButton = document.getElementById('playerButton');
       const playerIcon = document.getElementById('playerIcon');
       const audio = document.getElementById('backgroundMusic');
-      let isPlaying = false;
+      let isPlaying = true; // Comenzamos con true ya que la música iniciará automáticamente
 
-      // Intentar reproducir automáticamente al cargar la página
+      // Función para intentar reproducir el audio
       const playAudio = async () => {
         try {
           await audio.play();
@@ -323,16 +322,15 @@
           playerIcon.classList.add('fa-pause');
         } catch (err) {
           console.log('Reproducción automática bloqueada por el navegador');
-          alert('Haz clic en el botón de reproducción para iniciar la música.');
           isPlaying = false;
           playerIcon.classList.remove('fa-pause');
           playerIcon.classList.add('fa-play');
         }
       };
 
-      playAudio(); // Intentar reproducción automática
+      // Intentar reproducir automáticamente
+      playAudio();
 
-      // Evento para el botón de reproducción/pausa
       playerButton.addEventListener('click', function () {
         if (isPlaying) {
           audio.pause();
@@ -346,7 +344,7 @@
         isPlaying = !isPlaying;
       });
 
-      // Pausar cuando el usuario cambia de pestaña
+      // Pausar la música cuando el usuario cambia de pestaña
       document.addEventListener('visibilitychange', function () {
         if (document.hidden && isPlaying) {
           audio.pause();
@@ -354,7 +352,8 @@
           playerIcon.classList.add('fa-play');
           isPlaying = false;
         } else if (!document.hidden && !isPlaying) {
-          // Opcional: Retomar la reproducción automática
+          // Opcional: Reanudar la reproducción cuando el usuario regresa
+          // Descomenta las siguientes líneas si deseas que la música se reanude automáticamente
           // audio.play();
           // playerIcon.classList.remove('fa-play');
           // playerIcon.classList.add('fa-pause');
@@ -363,7 +362,6 @@
       });
     });
   </script>
-
 </body>
 
 </html>
