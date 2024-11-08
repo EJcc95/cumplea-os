@@ -1,0 +1,343 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+  font-family: "Noto Serif", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+/* Background Image and Hero Section Styles */
+.hero-section {
+  position: relative;
+  height: 100vh;
+  background: url('../image/happy.jpg') no-repeat center center;
+  background-size: cover;
+  color: #09265C;
+  overflow: hidden;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Ajusta el color y la opacidad aquí */
+  z-index: 1;
+  /* Asegura que esté detrás del texto */
+}
+
+.hero-section * {
+  position: relative;
+  z-index: 2;
+  /* Asegura que el contenido esté encima del fondo con opacidad */
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Wave Animation Styles */
+.wave-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.waves {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.parallax>use {
+  animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+}
+
+.parallax>use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 7s;
+}
+
+.parallax>use:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+}
+
+.parallax>use:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 13s;
+}
+
+.parallax>use:nth-child(4) {
+  animation-delay: -5s;
+  animation-duration: 20s;
+}
+
+@keyframes move-forever {
+  0% {
+    transform: translate3d(-90px, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(85px, 0, 0);
+  }
+}
+
+/* About */
+.about {
+  background: linear-gradient(rgba(0, 0, 0, .1), rgba(0, 0, 0, .1)), url(../image/iglesia.jpg) left center no-repeat;
+  background-size: cover;
+  border-radius: 10px;
+}
+
+.about h4 {
+  color: #09265C;
+  font-size: 2rem;
+}
+
+.about b {
+  color: #09265C;
+  font-size: 1.5rem;
+}
+
+/* Event Details Section with Overlay */
+.event-details {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+
+  text-align: center;
+}
+
+.event-details .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #09265C;
+
+  /* Ajusta la opacidad del fondo aquí */
+  z-index: 1;
+}
+
+.event-details .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* Gallery Section */
+.gallery-section {
+  background-color: #f7f7f7;
+}
+
+.card {
+  overflow: hidden;
+  border: none;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+
+
+.wedding-card {
+  background-color: white;
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+}
+
+.rings-icon {
+  font-size: 2.5rem;
+  color: #b5a186;
+}
+
+.wedding-title {
+
+  font-size: 3rem;
+  color: #0c61cf;
+  margin-bottom: 2rem;
+}
+
+.event-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.section-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: #0c61cf;
+  margin-bottom: 1rem;
+}
+
+.event-date,
+.location-text {
+  color: #333;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.btn-calendar,
+.btn-location {
+  background-color: #0c61cf;
+  color: white;
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.btn-calendar:hover,
+.btn-location:hover {
+  background-color: #307de0;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.event-details,
+.event-location {
+  margin-bottom: 2rem;
+}
+
+.quote-container {
+  background-color: #ffffff;
+  padding: 50px;
+  text-align: center;
+  color: #0c61cf;
+  font-family: 'Georgia', serif;
+  transition: color 0.3s ease;
+}
+
+.quote-container:hover {
+  color: #307de0;
+  /* Cambia a un color más oscuro al pasar el ratón */
+}
+
+.quote-symbol {
+  font-size: 4rem;
+  /* Tamaño grande para las comillas */
+  vertical-align: middle;
+}
+
+.quote-text {
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin: 20px 0;
+}
+
+.quote-author {
+  margin-top: 20px;
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+/* Contenedor de la tarjeta de invitación */
+
+.invitation-card {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 700px;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* Estilos de la imagen de la flor (o imagen temática de cumpleaños) */
+.invitation-card img {
+  max-width: 300px;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+
+/* Estilos del texto */
+.invitation-text {
+  color: #202122;
+  text-align: left;
+}
+
+.invitation-text h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.invitation-text p {
+  font-size: 1rem;
+  margin-bottom: 15px;
+}
+
+/* Estilo del botón de confirmación */
+
+.confirmation {
+  background-color: #09265C;
+}
+
+.confirm-button {
+  background-color: #09265C;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.confirm-button:hover {
+  background-color: #0c61cf;
+}
+
+/* Footer  */
+.footer-section {
+  background-color: #09265C;
+  color: white;
+  padding: 2rem 0;
+  text-align: center;
+}
+
+
+@media (max-width: 768px) {
+  .wedding-card {
+    padding: 2rem;
+  }
+
+  .wedding-title {
+    font-size: 2.5rem;
+  }
+
+  .btn-calendar,
+  .btn-location {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}
