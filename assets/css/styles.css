@@ -7,6 +7,63 @@ body {
   font-style: normal;
 }
 
+.floating-player {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+}
+
+.player-button {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.3);
+  /* Más transparente */
+  border: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+.player-button:hover {
+  transform: scale(1.1);
+  background-color: rgba(255, 255, 255, 0.5);
+  /* Aumenta ligeramente la opacidad al hover */
+}
+
+/* Efecto de desenfoque mejorado detrás del botón */
+.player-button::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  bottom: -5px;
+  left: -5px;
+  background: inherit;
+  border-radius: inherit;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  z-index: -1;
+}
+
+/* Color del ícono */
+.player-button i {
+  color: rgba(0, 0, 0, 0.7);
+  /* Ícono semi-transparente */
+}
+
+/* Animación suave para el cambio de ícono */
+.player-button i {
+  transition: transform 0.3s ease;
+}
+
+.player-button:hover i {
+  transform: scale(1.1);
+}
+
 /* Background Image and Hero Section Styles */
 .hero-section {
   position: relative;

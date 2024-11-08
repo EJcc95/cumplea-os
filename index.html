@@ -6,10 +6,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Feliz Cumpleaños Pedro 🎂</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
 <body>
+  <!-- Reproductor flotante -->
+  <div class="floating-player">
+    <button class="player-button" id="playerButton" title="Reproducir/Pausar música">
+      <i class="fas fa-pause" id="playerIcon"></i>
+    </button>
+    <audio id="backgroundMusic" loop>
+      <source src="assets/music/My_Way-Frank_Sinatra.mp3" type="audio/mp3">
+      Tu navegador no soporta el elemento de audio.
+    </audio>
+  </div>
 
   <!-- Hero Section -->
   <section class="hero-section text-white text-center">
@@ -292,6 +303,62 @@
 
       // Ejecutar la función de confeti cuando se cargue la página
       runConfetti();
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const playerButton = document.getElementById('playerButton');
+      const playerIcon = document.getElementById('playerIcon');
+      const audio = document.getElementById('backgroundMusic');
+      let isPlaying = true; // Comenzamos con true ya que la música iniciará automáticamente
+
+      // Función para intentar reproducir el audio
+      const playAudio = async () => {
+        try {
+          await audio.play();
+          isPlaying = true;
+          playerIcon.classList.remove('fa-play');
+          playerIcon.classList.add('fa-pause');
+        } catch (err) {
+          console.log('Reproducción automática bloqueada por el navegador');
+          isPlaying = false;
+          playerIcon.classList.remove('fa-pause');
+          playerIcon.classList.add('fa-play');
+        }
+      };
+
+      // Intentar reproducir automáticamente
+      playAudio();
+
+      playerButton.addEventListener('click', function () {
+        if (isPlaying) {
+          audio.pause();
+          playerIcon.classList.remove('fa-pause');
+          playerIcon.classList.add('fa-play');
+        } else {
+          audio.play();
+          playerIcon.classList.remove('fa-play');
+          playerIcon.classList.add('fa-pause');
+        }
+        isPlaying = !isPlaying;
+      });
+
+      // Pausar la música cuando el usuario cambia de pestaña
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden && isPlaying) {
+          audio.pause();
+          playerIcon.classList.remove('fa-pause');
+          playerIcon.classList.add('fa-play');
+          isPlaying = false;
+        } else if (!document.hidden && !isPlaying) {
+          // Opcional: Reanudar la reproducción cuando el usuario regresa
+          // Descomenta las siguientes líneas si deseas que la música se reanude automáticamente
+          // audio.play();
+          // playerIcon.classList.remove('fa-play');
+          // playerIcon.classList.add('fa-pause');
+          // isPlaying = true;
+        }
+      });
     });
   </script>
 </body>
