@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap');
 
 body {
   font-family: "Crimson Text", serif;
@@ -216,13 +217,11 @@ body {
 
 /* Agradecimiento */
 
-.agradecimiento h1,
-h2,
-h3,
+.agradecimiento h2,h3,
 h4,
 h5,
 h6 {
-  font-family: great vibes;
+  font-family: "UnifrakturMaguntia", cursive;
   color: #134bb3;
   font-size: 2rem;
   font-weight: 500;
@@ -236,7 +235,7 @@ h6 {
 }
 
 .agradecimiento span {
-  font-family: great vibes !important;
+  font-family: "UnifrakturMaguntia", cursive !important;
   color: #134bb3 !important;
   font-size: 2.4rem !important;
 }
@@ -273,6 +272,10 @@ h6 {
   background-position: center;
   text-align: center;
   font-size: 1.2rem;
+}
+.event-details h2{
+  font-family: "Parisienne", cursive;
+  font-size: 1.5rem;
 }
 
 .event-details .overlay {
