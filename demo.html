@@ -1,71 +1,296 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web con Música de Fondo</title>
+    <title>Invitación de Cumpleaños</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* Estilo para ocultar el reproductor de audio */
-        audio {
-            display: none;
-        }
-
-        /* Botón fijo para reproducir/pausar */
-        #playPauseBtn {
+        .music-control {
             position: fixed;
-            top: 20px;
             right: 20px;
-            background-color: rgba(0, 0, 0, 0.5);
+            bottom: 20px;
+            z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.7);
             color: white;
             border: none;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             cursor: pointer;
-            font-size: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            transition: all 0.3s ease;
         }
 
-        #playPauseBtn:hover {
-            background-color: rgba(0, 0, 0, 0.7);
+        .music-control:hover {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-content {
+            background-color: #f8f9fa;
+            border-radius: 15px;
+        }
+
+        .welcome-title {
+            color: #2c3e50;
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .btn-music {
+            margin: 10px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-music.with-music {
+            background-color: #3498db;
+            border-color: #3498db;
+        }
+
+        .btn-music.without-music {
+            background-color: #95a5a6;
+            border-color: #95a5a6;
+        }
+
+        .btn-music:hover {
+            transform: scale(1.05);
         }
     </style>
 </head>
-
 <body>
+    <!-- Reproductor flotante -->
+  <div class="floating-player">
+    <button class="player-button" id="playerButton" title="Reproducir/Pausar música">
+      <i class="fas fa-pause" id="playerIcon"></i>
+    </button>
+    <audio id="backgroundMusic" loop>
+      <source src="assets/music/ClaroDeLuna.mp3" type="audio/mp3">
+      Tu navegador no soporta el elemento de audio.
+    </audio>
+  </div>
+    <!-- Modal de Bienvenida -->
+    <div class="modal fade" id="welcomeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center p-5">
+                    <h4 class="welcome-title">¡Te damos la bienvenida a nuestra invitación!</h4>
+                    <p>Elegimos la música para que te acompañe en este recorrido.</p>
+                    <p>¿Cómo quieres ingresar?</p>
+                    <div class="d-flex justify-content-center">
+                        <button class="btn btn-primary btn-music with-music" onclick="startWithMusic()">
+                            <i class="fas fa-music me-2"></i>Con música
+                        </button>
+                        <button class="btn btn-secondary btn-music without-music" onclick="startWithoutMusic()">
+                            <i class="fas fa-volume-mute me-2"></i>Sin música
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <!-- Reproductor de audio que inicia automáticamente -->
-    <audio id="backgroundMusic" autoplay loop>
-        <source src="assets/music/My_Way-FrankSinatra.mp3" type="audio/mp3">
-        Tu navegador no soporta el elemento de audio.
+    <!-- Botón flotante para control de música -->
+    <button class="music-control d-none" id="musicControl" onclick="toggleMusic()">
+        <i class="fas fa-play" id="musicIcon"></i>
+    </button>
+
+    <!-- Audio elemento -->
+    <audio id="backgroundMusic" loop>
+        <source src="assets/music/ClaroDeLuna.mp3" type="audio/mp3">
     </audio>
 
-    <!-- Botón de reproducción/pausa -->
-    <button id="playPauseBtn">❚❚</button>
+    <!-- Contenido de ejemplo para la página -->
+    <div class="container my-5">
+        <h1>¡Celebremos Juntos!</h1>
+        <!-- Aquí va el resto del contenido de tu invitación -->
+    </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Obtener el elemento de audio y el botón
-        const audio = document.getElementById('backgroundMusic');
-        const playPauseBtn = document.getElementById('playPauseBtn');
+        let isPlaying = false;
+        const welcomeModal = new bootstrap.Modal(document.getElementById('welcomeModal'));
+        const audioElement = document.getElementById('backgroundMusic');
+        const musicControl = document.getElementById('musicControl');
+        const musicIcon = document.getElementById('musicIcon');
 
-        // Función para alternar entre reproducción y pausa
-        function togglePlayPause() {
-            if (audio.paused) {
-                audio.play();
-                playPauseBtn.textContent = '❚❚'; // Icono de pausa
-            } else {
-                audio.pause();
-                playPauseBtn.textContent = '▶'; // Icono de play
-            }
+        // Mostrar el modal al cargar la página
+        window.onload = function() {
+            welcomeModal.show();
+        };
+
+        function startWithMusic() {
+            welcomeModal.hide();
+            musicControl.classList.remove('d-none');
+            audioElement.play();
+            isPlaying = true;
+            updateMusicIcon();
         }
 
-        // Agregar evento de clic al botón para alternar la música
-        playPauseBtn.addEventListener('click', togglePlayPause);
+        function startWithoutMusic() {
+            welcomeModal.hide();
+            musicControl.classList.remove('d-none');
+            isPlaying = false;
+            updateMusicIcon();
+        }
+
+        function toggleMusic() {
+            isPlaying = !isPlaying;
+            if (isPlaying) {
+                audioElement.play();
+            } else {
+                audioElement.pause();
+            }
+            updateMusicIcon();
+        }
+
+        function updateMusicIcon() {
+            musicIcon.className = isPlaying ? 'fas fa-pause' : 'fas fa-play';
+        }
     </script>
 
-</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const playerButton = document.getElementById('playerButton');
+      const playerIcon = document.getElementById('playerIcon');
+      const audio = document.getElementById('backgroundMusic');
+      let isPlaying = true; // Comenzamos con true ya que la música iniciará automáticamente
 
+      // Función para intentar reproducir el audio
+      const playAudio = async () => {
+        try {
+          await audio.play();
+          isPlaying = true;
+          playerIcon.classList.remove('fa-play');
+          playerIcon.classList.add('fa-pause');
+        } catch (err) {
+          console.log('Reproducción automática bloqueada por el navegador');
+          isPlaying = false;
+          playerIcon.classList.remove('fa-pause');
+          playerIcon.classList.add('fa-play');
+        }
+      };
+
+      // Intentar reproducir automáticamente
+      playAudio();
+
+      playerButton.addEventListener('click', function () {
+        if (isPlaying) {
+          audio.pause();
+          playerIcon.classList.remove('fa-pause');
+          playerIcon.classList.add('fa-play');
+        } else {
+          audio.play();
+          playerIcon.classList.remove('fa-play');
+          playerIcon.classList.add('fa-pause');
+        }
+        isPlaying = !isPlaying;
+      });
+
+      // Pausar la música cuando el usuario cambia de pestaña
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden && isPlaying) {
+          audio.pause();
+          playerIcon.classList.remove('fa-pause');
+          playerIcon.classList.add('fa-play');
+          isPlaying = false;
+        } else if (!document.hidden && !isPlaying) {
+          // Opcional: Reanudar la reproducción cuando el usuario regresa
+          // Descomenta las siguientes líneas si deseas que la música se reanude automáticamente
+          // audio.play();
+          // playerIcon.classList.remove('fa-play');
+          // playerIcon.classList.add('fa-pause');
+          // isPlaying = true;
+        }
+      });
+    });
+  </script>
+  .buttons-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px;
+}
+
+.btn-music {
+    flex: 1;
+    min-width: 130px;
+    max-width: 200px;
+    padding: 12px 20px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-music.with-music {
+    background-color: #3498db;
+    border-color: #3498db;
+}
+
+.btn-music.without-music {
+    background-color: #95a5a6;
+    border-color: #95a5a6;
+}
+
+.btn-music:hover {
+    transform: scale(1.05);
+}
+
+/* Media queries para dispositivos móviles */
+@media (max-width: 576px) {
+    .modal-dialog {
+        margin: 0.5rem;
+    }
+
+    .welcome-title {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .buttons-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn-music {
+        width: 100%;
+        max-width: none;
+        margin: 5px 0;
+        padding: 15px;
+        font-size: 14px;
+    }
+
+    .modal-body {
+        padding: 15px !important;
+    }
+
+    /* Ajuste del botón de control de música en móviles */
+    .music-control {
+        right: 10px;
+        bottom: 10px;
+        width: 45px;
+        height: 45px;
+    }
+}
+
+/* Media queries para dispositivos muy pequeños */
+@media (max-width: 320px) {
+    .welcome-title {
+        font-size: 18px;
+    }
+
+    .btn-music {
+        padding: 12px;
+        font-size: 13px;
+    }
+}
+</body>
 </html>

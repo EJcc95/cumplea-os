@@ -11,17 +11,39 @@
 </head>
 
 <body>
-  <!-- Reproductor flotante -->
-  <div class="floating-player">
-    <button class="player-button" id="playerButton" title="Reproducir/Pausar música">
-      <i class="fas fa-pause" id="playerIcon"></i>
-    </button>
-    <audio id="backgroundMusic" loop>
-      <source src="assets/music/ClaroDeLuna.mp3" type="audio/mp3">
-      Tu navegador no soporta el elemento de audio.
-    </audio>
+  
+<!-- Modal de Bienvenida -->
+<div class="modal fade" id="welcomeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+          <div class="modal-body text-center p-5">
+              <h4 class="welcome-title">¡Te invito a celebrar mi cumpleaños!</h4>
+              <p>Elegí esta música para que te acompañe en este recorrido.</p>
+              <p>¿Cómo quieres ingresar?</p>
+              <div class="buttons-container">
+                <button class="btn btn-primary btn-music with-music" onclick="startWithMusic()">
+                    <i class="fas fa-music"></i>
+                    <span> Con música</span>
+                </button>
+                <button class="btn btn-secondary btn-music without-music" onclick="startWithoutMusic()">
+                    <i class="fas fa-volume-mute"></i>
+                    <span> Sin música</span>
+                </button>
+            </div>
+          </div>
+      </div>
   </div>
+</div>
 
+<!-- Botón flotante para control de música -->
+<button class="music-control d-none" id="musicControl" onclick="toggleMusic()">
+  <i class="fas fa-play" id="musicIcon"></i>
+</button>
+
+<!-- Audio elemento -->
+<audio id="backgroundMusic" loop>
+  <source src="assets/music/ClaroDeLuna.mp3" type="audio/mp3">
+</audio>
   <!-- Hero Section -->
   <section class="hero-section text-white text-center">
     <div class="container d-flex flex-column justify-content-center align-items-center h-100">
@@ -335,62 +357,48 @@
       runConfetti();
     });
   </script>
+  
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const playerButton = document.getElementById('playerButton');
-      const playerIcon = document.getElementById('playerIcon');
-      const audio = document.getElementById('backgroundMusic');
-      let isPlaying = true; // Comenzamos con true ya que la música iniciará automáticamente
+    let isPlaying = false;
+    const welcomeModal = new bootstrap.Modal(document.getElementById('welcomeModal'));
+    const audioElement = document.getElementById('backgroundMusic');
+    const musicControl = document.getElementById('musicControl');
+    const musicIcon = document.getElementById('musicIcon');
 
-      // Función para intentar reproducir el audio
-      const playAudio = async () => {
-        try {
-          await audio.play();
-          isPlaying = true;
-          playerIcon.classList.remove('fa-play');
-          playerIcon.classList.add('fa-pause');
-        } catch (err) {
-          console.log('Reproducción automática bloqueada por el navegador');
-          isPlaying = false;
-          playerIcon.classList.remove('fa-pause');
-          playerIcon.classList.add('fa-play');
-        }
-      };
+    // Mostrar el modal al cargar la página
+    window.onload = function() {
+        welcomeModal.show();
+    };
 
-      // Intentar reproducir automáticamente
-      playAudio();
+    function startWithMusic() {
+        welcomeModal.hide();
+        musicControl.classList.remove('d-none');
+        audioElement.play();
+        isPlaying = true;
+        updateMusicIcon();
+    }
 
-      playerButton.addEventListener('click', function () {
-        if (isPlaying) {
-          audio.pause();
-          playerIcon.classList.remove('fa-pause');
-          playerIcon.classList.add('fa-play');
-        } else {
-          audio.play();
-          playerIcon.classList.remove('fa-play');
-          playerIcon.classList.add('fa-pause');
-        }
+    function startWithoutMusic() {
+        welcomeModal.hide();
+        musicControl.classList.remove('d-none');
+        isPlaying = false;
+        updateMusicIcon();
+    }
+
+    function toggleMusic() {
         isPlaying = !isPlaying;
-      });
-
-      // Pausar la música cuando el usuario cambia de pestaña
-      document.addEventListener('visibilitychange', function () {
-        if (document.hidden && isPlaying) {
-          audio.pause();
-          playerIcon.classList.remove('fa-pause');
-          playerIcon.classList.add('fa-play');
-          isPlaying = false;
-        } else if (!document.hidden && !isPlaying) {
-          // Opcional: Reanudar la reproducción cuando el usuario regresa
-          // Descomenta las siguientes líneas si deseas que la música se reanude automáticamente
-          // audio.play();
-          // playerIcon.classList.remove('fa-play');
-          // playerIcon.classList.add('fa-pause');
-          // isPlaying = true;
+        if (isPlaying) {
+            audioElement.play();
+        } else {
+            audioElement.pause();
         }
-      });
-    });
-  </script>
+        updateMusicIcon();
+    }
+
+    function updateMusicIcon() {
+        musicIcon.className = isPlaying ? 'fas fa-pause' : 'fas fa-play';
+    }
+</script>
 </body>
 
 </html>
